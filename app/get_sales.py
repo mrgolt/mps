@@ -18,7 +18,7 @@ def get_artikuls():
 def add_sales (artikul, orders):
     with con:
         cur = con.cursor()
-        query = "INSERT INTO `sales` (art_id, orders) VALUES ('{}', '{}')".format(artikul, orders)
+        query = "INSERT INTO `orders` (art_id, orders, timestamp) VALUES ('{}', '{}', NOW())".format(artikul, orders)
         cur.execute(query)
 
 
@@ -42,7 +42,9 @@ def main():
                 for wh in size['stocks']:
                     stocks += wh['qty']
             arts[product['id']] = stocks
-    print(arts)
+
+    for key in arts.keys():
+        add_sales(key, arts[key])
 
 
 if __name__ == '__main__':
