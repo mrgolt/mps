@@ -4,10 +4,10 @@ global con
 con = pymysql.connect('localhost', 'root', 'ZAQ!@WSX', 'wb')
 
 
-def add_item(name, artikul, url):
+def add_item(name, artikul, url, cat_url):
     with con:
         cur = con.cursor()
-        query = "INSERT INTO `items` (`name`, `artikul`, `url`) VALUES ('{}', '{}', '{}')".format(name, artikul, url)
+        query = "INSERT INTO `items` (`name`, `artikul`, `url`, `cat_url`) VALUES ('{}', '{}', '{}')".format(name, artikul, url,cat_url)
         cur.execute(query)
 
 

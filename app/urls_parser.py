@@ -73,10 +73,10 @@ def get_page_urls(url):
 
 
 def main():
-    url = 'https://www.wildberries.ru/catalog/detyam/tovary-dlya-malysha/peredvizhenie/perenoski-dlya-detey#c8058733'
-    urls = get_page_urls(url)
+    cat_url = 'https://www.wildberries.ru/catalog/detyam/tovary-dlya-malysha/peredvizhenie/perenoski-dlya-detey#c8058733'
+    urls = get_page_urls(cat_url)
     for url in urls:
-        matches = re.search(r"catalog\/(.\d+)", url)
+        matches = re.search(r"catalog\/(.\d+)", url, cat_url)
         add_item("",matches[1],url)
 
 
