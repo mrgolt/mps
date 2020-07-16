@@ -1,7 +1,7 @@
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup as BS
-from wb_1 import get_html
+from urls_parser import get_html
 import db
 
 
