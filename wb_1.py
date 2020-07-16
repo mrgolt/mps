@@ -71,7 +71,7 @@ def get_page_urls(url):
 
 
 def main():
-    url = 'https://www.wildberries.ru/catalog/sport/velosport/aksessuary'
+    url = 'https://www.wildberries.ru/catalog/detyam/tovary-dlya-malysha/peredvizhenie/perenoski-dlya-detey#c8058733'
     urls = get_page_urls(url)
     print(urls)
 
