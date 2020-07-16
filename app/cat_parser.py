@@ -1,8 +1,8 @@
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup as BS
-from urls_parser import get_html
-import db
+from app.urls_parser import get_html
+from app import db
 
 
 def get_cats_lvl1(browser):
