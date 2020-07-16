@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 import csv
+from app.mysql import add_item
+import re
 
 
 def write_csv(data, name):
@@ -73,7 +75,9 @@ def get_page_urls(url):
 def main():
     url = 'https://www.wildberries.ru/catalog/detyam/tovary-dlya-malysha/peredvizhenie/perenoski-dlya-detey#c8058733'
     urls = get_page_urls(url)
-    print(urls)
+    for url in urls:
+        matches = re.search(r"catalog\/(.\d+)", url)
+        add_item("",matches[1],url)
 
 
 if __name__ == '__main__':

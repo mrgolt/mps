@@ -7,11 +7,8 @@ con = pymysql.connect('localhost', 'root', 'ZAQ!@WSX', 'wb')
 def add_item(name, artikul, url):
     with con:
         cur = con.cursor()
-        query = "INSERT INTO `items` (`name`, `artikul`, `url`) VALUES ('{}}', '{}', '{}')".format(name, artikul, url)
-        try:
-            cur.execute(query)
-        except Exception as e:
-            pass
+        query = "INSERT INTO `items` (`name`, `artikul`, `url`) VALUES ('{}', '{}', '{}')".format(name, artikul, url)
+        cur.execute(query)
 
 
 def main():
