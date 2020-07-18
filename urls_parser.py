@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import csv
-from app.mysql import add_item
+from sqldb import add_item
 import re
 
 

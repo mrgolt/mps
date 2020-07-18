@@ -2,6 +2,7 @@ import pymysql
 
 global con
 con = pymysql.connect('localhost', 'root', 'ZAQ!@WSX', 'wb')
+con.query("SET time_zone = 'Asia/Yekaterinburg'")
 
 
 def add_item(name, artikul, url, cat_url):
