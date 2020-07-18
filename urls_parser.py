@@ -73,11 +73,23 @@ def get_page_urls(url):
 
 
 def main():
-    cat_url = 'https://www.wildberries.ru/catalog/sport/dlya-detey/detskiy-transport/begovel'
-    urls = get_page_urls(cat_url)
-    for url in urls:
-        matches = re.search(r"catalog\/(.\d+)", url)
-        add_item("",matches[1],url, cat_url)
+    url_list = ['https://www.wildberries.ru/catalog/sport/dlya-detey/detskiy-transport/begovel',
+                'https://www.wildberries.ru/catalog/detyam/tovary-dlya-malysha/gigiena-i-uhod?xsubject=999',
+                'https://www.wildberries.ru/catalog/detyam/tovary-dlya-malysha/peredvizhenie/perenoski-dlya-detey',
+                'https://www.wildberries.ru/catalog/0/search.aspx?search=горка&subject=3594',
+                'https://www.wildberries.ru/catalog/detyam/tovary-dlya-malysha/mebel?xsubject=2087',
+                'https://www.wildberries.ru/catalog/detyam/tovary-dlya-malysha/mebel/kokony-dlya-novorozhdennyh',
+                'https://www.wildberries.ru/catalog/igrushki/konstruktory/magnitnye',
+                'https://www.wildberries.ru/catalog/detyam/tovary-dlya-malysha/mebel?xsubject=1982',
+                'https://www.wildberries.ru/catalog/detyam/tovary-dlya-malysha/aksessuary-dlya-kormleniya/poilniki']
+
+    for cat_url in url_list:
+        #cat_url = 'https://www.wildberries.ru/catalog/sport/dlya-detey/detskiy-transport/begovel'
+        urls = get_page_urls(cat_url)
+        for url in urls:
+            matches = re.search(r"catalog\/(.\d+)", url)
+            add_item("",matches[1],url, cat_url)
+            print("ADD "+cat_url)
 
 
 if __name__ == '__main__':

@@ -20,7 +20,7 @@ def get_last_stocks(artikul):
         try:
             return cur.fetchone()[0]
         except:
-            return 0
+            return None
 
 
 def main():

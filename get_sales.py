@@ -11,11 +11,12 @@ def get_artikuls(limit):
     arts = []
     with con:
         cur_time = datetime.now()
-        find_time = datetime(cur_time.year, cur_time.month, cur_time.day, cur_time.hour - 1, cur_time.minute,
+        find_time = datetime(cur_time.year, cur_time.month, cur_time.day, cur_time.hour-1, cur_time.minute,
                              cur_time.second)
-        print(find_time.)
+        #print(find_time)
         cur = con.cursor()
         query = "SELECT artikul FROM `items` WHERE `timestamp` < '{}' or `timestamp` IS NULL LIMIT {}".format(find_time,limit)
+        print(query)
         cur.execute(query)
         data = cur.fetchall()
         for row in data:
@@ -26,18 +27,22 @@ def get_artikuls(limit):
 def add_sales (artikul, orders, sales):
     with con:
         cur = con.cursor()
-        if sales is not 0:
+        if sales != 0 and sales is not None:
             query = "INSERT INTO `orders` (art_id, orders, orders_diff,timestamp) VALUES ('{}', '{}', '{}', '{}')".format(artikul, orders, sales, datetime.now())
             cur.execute(query)
-        query = "UPDATE `items` SET `timestamp` = '{}' WHERE `artikul` = '{}'".format(artikul, datetime.now())
+        if sales is None:
+            query = "INSERT INTO `orders` (art_id, orders, orders_diff,timestamp) VALUES ('{}', '{}', 0, '{}')".format(artikul, orders, datetime.now())
+            cur.execute(query)
+        query = "UPDATE `items` SET `timestamp` = '{}' WHERE `artikul` = '{}'".format(datetime.now(), artikul)
         #print(query)
         cur.execute(query)
 
 
 def main():
-    artikul = ''
     arts = get_artikuls(100)
+    print(len(arts))
     while len(arts) > 0:
+        artikul = ''
         for art in arts:
             artikul += str(art)+";"
 
@@ -57,7 +62,10 @@ def main():
 
         for key in arts:
             last_orders = get_last_stocks(key)
-            order_diff = last_orders-arts[key] if last_orders > 0 else 0
+            if last_orders is None:
+                order_diff = None
+            else:
+                order_diff = last_orders-arts[key] if last_orders > 0 else 0
             add_sales(key, arts[key],order_diff)
 
         arts = get_artikuls(100)
