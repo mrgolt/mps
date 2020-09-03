@@ -14,4 +14,4 @@ COPY . .
 
 ENTRYPOINT ["python"]
 
-CMD ["get_sales.py"]
+CMD ["get_items_urls.py"]
