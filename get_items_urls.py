@@ -57,7 +57,7 @@ def main():
     client = bigquery.Client.from_service_account_json(
         'warm-composite-280714-d0e0c8faac10.json')
 
-    query_job = client.query("SELECT * FROM wb.category WHERE lvl5 like '%Сменные файлы для пилок%'")
+    query_job = client.query("SELECT * FROM wb.category WHERE lvl5 not like '%Сменные файлы для пилок%'")
 
     rows = []
     for row in query_job:
