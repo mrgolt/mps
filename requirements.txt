@@ -4,3 +4,4 @@ lxml~=4.5.2
 PyMySQL~=0.10.0
 selenium~=3.141.0
 google~=3.0.0
+webdriver-manager~=3.2.2
